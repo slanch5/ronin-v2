@@ -1,0 +1,331 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'img/icons/logo.ico' %}"
+      type="image/x-icon"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/phone.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'lightbox2/dist/css/lightbox.min.css' %}"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <title>Fight Club «RONIN»</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="container">
+          <div class="heder__inner">
+            <div class="header__logo">
+              <a href="#">
+                <img
+                  src="{% static 'img/logo_2 .JPG (Користувацькі).jpeg' %}"
+                  alt="logo"
+                />
+              </a>
+            </div>
+            <nav class="header__nav">
+              <ul class="heder__list">
+                <li class="header__nav__link__item">
+                  <a href="#" class="heder__nav__link">Головна</a>
+                </li>
+                <li class="header__nav__link__item">
+                  <a href="#about__us" class="heder__nav__link">про нас</a>
+                </li>
+                <li class="header__nav__link__item">
+                  <a href="#club__achievements" class="heder__nav__link"
+                    >досягнення клубу</a
+                  >
+                </li>
+                <li class="header__nav__link__item">
+                  <a href="#location__club" class="heder__nav__link"
+                    >адреса клубу</a
+                  >
+                </li>
+                <li class="header__nav__link__item">
+                  <a href="#contact__us" class="heder__nav__link"
+                    >запис на тренування</a
+                  >
+                </li>
+              </ul>
+              <div class="hedrer__phone__inner">
+                <a class="header__phone" href="tel:+380732002721">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="heder__icon__phone"
+                    width="24px"
+                    height="24px"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+
+                  +38(073) 200 27 21
+                </a>
+              </div>
+            </nav>
+
+            <button
+              class="burger"
+              aria-label="Відкрити меню"
+              aria-expanded="false"
+            >
+              <span class="burger__line"></span>
+              <span class="burger__line"></span>
+              <span class="burger__line"></span>
+            </button>
+          </div>
+
+          <!-- Overlay -->
+          <div class="nav-overlay"></div>
+        </div>
+      </header>
+      <main class="maim">
+        <section class="hero">
+          <div class="container">
+            <div class="hero__inner">
+              <blockquote>
+                <h1 class="hero__text" data-text="{{ page.hero_title }}">
+                  {{ page.hero_title }}
+                </h1>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+        <section class="about__us" id="about__us">
+          <div class="container">
+            <div class="about__us__title__inner">
+              <img
+                class="decor"
+                src="{% static 'img/decor__Користувацькі_-removebg-preview (Користувацькі).png' %}"
+                alt=""
+              />
+              <h3 class="about__us__title">{{ page.about_title }}</h3>
+            </div>
+           <div class="about__us__text__inner">
+  <div class="about__us__text__block">
+    <div class="about__us__text">{{ page.about_text_1|richtext }}</div>
+  </div>
+  <div class="about__us__text__block">
+    <div class="about__us__text">{{ page.about_text_2|richtext }}</div>
+  </div>
+  <div class="about__us__text__block">
+    <div class="about__us__text">{{ page.about_text_3|richtext }}</div>
+  </div>
+</div>
+            </div>
+          </div>
+        </section>
+        <section class="club__achievements" id="club__achievements">
+  <div class="container">
+    <div class="club__achievements__img__box">
+      <img
+        class="decor"
+        src="{% static 'img/decor__Користувацькі_-removebg-preview (Користувацькі).png' %}"
+        alt=""
+      />
+    </div>
+    <h3 class="club__achievements__title">{{ page.achievements_title }}</h3>
+    <div class="club__achievements__inner">
+      {% for item in page.gallery_images.all %}
+      <div class="grid-item">
+        {% image item.image width-800 as img %}
+        <a href="{{ img.url }}" data-lightbox="gridImage">
+          <img src="{{ img.url }}" alt="galleryimage" loading="lazy" />
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+        <section class="location__club" id="location__club">
+          <div class="container">
+            <div class="location__club__box">
+              <img
+                class="decor"
+                src="{% static 'img/decor__Користувацькі_-removebg-preview (Користувацькі).png' %}"
+                alt=""
+              />
+            </div>
+            <h3 class="location__club__title">{{ page.contact_address }}</h3>
+            <h4 class="location__club__sub__title">{{ page.location_subtitle }}</h4>
+          </div>
+          <div id="location__map"></div>
+        </section>
+
+        <section class="contact__us" id="contact__us">
+          <div class="container">
+            <div class="contact__us__box">
+              <img
+                class="decor"
+                src="{% static 'img/decor__Користувацькі_-removebg-preview (Користувацькі).png' %}"
+                alt=""
+              />
+            </div>
+            <h3 class="contacts__us__title">{{ page.contact_section_title }}</h3>
+            <div class="contacts__us__inner">
+               <button popovertarget="mypopover" class="contacs__us__btn">
+              {{ page.contact_btn_text }}
+              </button>
+
+              <div id="mypopover" popover class="training__popover">
+                <button
+                  class="popover__close"
+                  popovertarget="mypopover"
+                  popovertargetaction="hide"
+                  aria-label="Закрити"
+                >
+                  ✕
+                </button>
+
+                <h3 class="popover__title">Запис на тренування</h3>
+
+                <form id="training-form" class="popover__form" novalidate>
+                  <input
+                    type="hidden"
+                    name="access_key"
+                    value="beccfd6f-cd45-4a2d-a9bf-677af258f8cd"
+                  />
+                  <input
+                    type="hidden"
+                    name="subject"
+                    value="Новий запис на тренування"
+                  />
+
+                  <div class="popover__field">
+                    <label for="f-name" class="popover__label">Ім'я</label>
+                    <input
+                      type="text"
+                      id="f-name"
+                      name="Ім'я"
+                      class="popover__input"
+                      placeholder="Іван"
+                    />
+                  </div>
+
+                  <div class="popover__field">
+                    <label for="f-surname" class="popover__label"
+                      >Прізвище</label
+                    >
+                    <input
+                      type="text"
+                      id="f-surname"
+                      name="Призвіще"
+                      class="popover__input"
+                      placeholder="Петренко"
+                    />
+                  </div>
+
+                  <div class="popover__field">
+                    <label for="f-patronymic" class="popover__label"
+                      >По батькові</label
+                    >
+                    <input
+                      type="text"
+                      id="f-patronymic"
+                      name="по батькові"
+                      class="popover__input"
+                      placeholder="Олексійович"
+                    />
+                  </div>
+
+                  <div class="popover__field">
+                    <label for="f-phone" class="popover__label"
+                      >Номер телефону</label
+                    >
+                    <input
+                      type="tel"
+                      id="f-phone"
+                      name="Номер телефону"
+                      class="popover__input"
+                      placeholder=" +38(073) 200 27 21"
+                    />
+                  </div>
+
+                  <div class="popover__field">
+                    <label for="f-time" class="popover__label"
+                      >Час тренування</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="13-00"
+                      id="f-time"
+                      name="Час тренування"
+                      class="popover__input"
+                    />
+                  </div>
+
+                  <div class="popover__field">
+                    <label for="f-type" class="popover__label"
+                      >Тип тренування</label
+                    >
+                    <select
+                      id="f-type"
+                      name="тип тренування"
+                      class="popover__select"
+                    >
+                      <option value="" disabled selected>Оберіть тип</option>
+                      <option value="Групове">Групове тренування</option>
+                      <option value="Персональне">
+                        Персональне тренування
+                      </option>
+                    </select>
+                  </div>
+
+                  <button type="submit" class="popover__submit">
+                    Записатись
+                  </button>
+
+                  <p class="popover__message" id="popover-message"></p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer__logo__box">
+            <img
+              class="footer__img"
+              src="{% static 'img/logo_2 .JPG (Користувацькі).jpeg' %}"
+              alt="footerimg"
+            />
+          </div>
+          <div class="footer__inner">
+            <h3 class="footer__title">''Кудо - реальніше тільки життя''</h3>
+            <p class="footer__sub__title">
+              Такаші Адзума 東 孝, Адзума Такаші; 22 травня 1949 — 3 квітня 2021
+              — японський майстер бойових мистецтв, засновник Кудо (空道),
+              президент Міжнародної федерації Кудо та засновник школи бойових
+              мистецтв Дайдо-Дзюку.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/just-validate@4.3.0/dist/just-validate.production.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.9/dist/inputmask.min.js"></script>
+    <script src="{% static 'lightbox2/dist/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
