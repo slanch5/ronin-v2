@@ -719,7 +719,7 @@ header {
     color: #ca3b13;
   }
 }
-.footer__sub__title {
+.footer__sub__title p {
   text-transform: uppercase;
   font-size: clamp(16px, 3.8vw, 20px);
 

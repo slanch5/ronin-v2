@@ -16,6 +16,13 @@ class GalleryImage(Orderable):
     panels = [FieldPanel('image')]
 
 
+class AboutTextBlock(Orderable):
+    page = ParentalKey('HomePage', on_delete=models.CASCADE, related_name='about_texts')
+    text = RichTextField(verbose_name='Текст')
+
+    panels = [FieldPanel('text')]
+
+
 class HomePage(Page):
     # HERO секція
     hero_title = models.CharField(max_length=200, verbose_name='Заголовок Hero', default='', blank=True)
@@ -28,9 +35,6 @@ class HomePage(Page):
 
     # ABOUT US секція
     about_title = models.CharField(max_length=200, verbose_name='Заголовок "Про нас"', default='', blank=True)
-    about_text_1 = RichTextField(verbose_name='Текст "Про нас" 1', default='', blank=True)
-    about_text_2 = RichTextField(verbose_name='Текст "Про нас" 2', default='', blank=True)
-    about_text_3 = RichTextField(verbose_name='Текст "Про нас" 3', default='', blank=True)
     about_image = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+',
@@ -60,9 +64,7 @@ class HomePage(Page):
 
         MultiFieldPanel([
             FieldPanel('about_title'),
-            FieldPanel('about_text_1'),
-            FieldPanel('about_text_2'),
-            FieldPanel('about_text_3'),
+            InlinePanel('about_texts', label='Блок тексту'),
             FieldPanel('about_image'),
         ], heading='📖 Про нас'),
 

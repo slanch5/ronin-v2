@@ -119,15 +119,11 @@
               <h3 class="about__us__title">{{ page.about_title }}</h3>
             </div>
            <div class="about__us__text__inner">
+  {% for block in page.about_texts.all %}
   <div class="about__us__text__block">
-    <div class="about__us__text">{{ page.about_text_1|richtext }}</div>
+    <div class="about__us__text">{{ block.text|richtext }}</div>
   </div>
-  <div class="about__us__text__block">
-    <div class="about__us__text">{{ page.about_text_2|richtext }}</div>
-  </div>
-  <div class="about__us__text__block">
-    <div class="about__us__text">{{ page.about_text_3|richtext }}</div>
-  </div>
+  {% endfor %}
 </div>
             </div>
           </div>
@@ -311,12 +307,9 @@
           </div>
           <div class="footer__inner">
             <h3 class="footer__title">''Кудо - реальніше тільки життя''</h3>
-            <p class="footer__sub__title">
-              Такаші Адзума 東 孝, Адзума Такаші; 22 травня 1949 — 3 квітня 2021
-              — японський майстер бойових мистецтв, засновник Кудо (空道),
-              президент Міжнародної федерації Кудо та засновник школи бойових
-              мистецтв Дайдо-Дзюку.
-            </p>
+            <div class="footer__sub__title">
+              {{ page.footer_text|richtext }}
+            </div>
           </div>
         </div>
       </footer>
