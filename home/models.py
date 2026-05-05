@@ -24,7 +24,7 @@ class AboutTextBlock(Orderable):
 
 
 class HomePage(Page):
-    # HERO секція
+    
     hero_title = models.CharField(max_length=200, verbose_name='Заголовок Hero', default='', blank=True)
     hero_subtitle = models.CharField(max_length=300, blank=True, verbose_name='Підзаголовок Hero')
     hero_bg = models.ForeignKey(
@@ -33,7 +33,7 @@ class HomePage(Page):
         verbose_name='Фон Hero'
     )
 
-    # ABOUT US секція
+    
     about_title = models.CharField(max_length=200, verbose_name='Заголовок "Про нас"', default='', blank=True)
     about_image = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
@@ -41,10 +41,10 @@ class HomePage(Page):
         verbose_name='Фото "Про нас"'
     )
 
-    # ДОСЯГНЕННЯ секція
+    
     achievements_title = models.CharField(max_length=200, verbose_name='Заголовок досягнень', default='', blank=True)
 
-    # КОНТАКТИ секція
+    
     contact_address = models.CharField(max_length=300, verbose_name='Адреса', default='', blank=True)
     contact_phone = models.CharField(max_length=50, verbose_name='Телефон', default='', blank=True)
     contact_email = models.EmailField(verbose_name='Email', default='', blank=True)
@@ -52,7 +52,8 @@ class HomePage(Page):
     contact_section_title = models.CharField(max_length=200, verbose_name='Заголовок секції контактів', default='', blank=True)
     contact_btn_text = models.CharField(max_length=100, verbose_name='Текст кнопки запису', default='', blank=True)
 
-    # ФУТЕР
+    
+    footer_title = models.CharField(max_length=200, verbose_name='Заголовок футера', default='', blank=True)
     footer_text = RichTextField(verbose_name='Текст футера', default='', blank=True)
 
     content_panels = Page.content_panels + [
@@ -83,6 +84,7 @@ class HomePage(Page):
         ], heading='📞 Контакти'),
 
         MultiFieldPanel([
+            FieldPanel('footer_title'),
             FieldPanel('footer_text'),
         ], heading='📄 Футер'),
     ]
