@@ -143,13 +143,13 @@
       <div class="grid-item">
         {% image item.image width-800 as img %}
         <a href="{{ img.url }}" data-lightbox="gridImage">
-          <img src="{{ img.url }}" alt="galleryimage" loading="lazy" />
+          <img class="imgreveal" src="{{ img.url }}" alt="galleryimage" loading="lazy" />
         </a>
       </div>
       {% endfor %}
     </div>
   </div>
-</section>
+
 
         <section class="location__club" id="location__club">
           <div class="container">

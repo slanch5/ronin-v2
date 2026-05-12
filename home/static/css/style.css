@@ -269,8 +269,22 @@ header {
   margin-top: 1.5625rem;
   font-size: clamp(1.5625rem, 3.8vw, 3.4375rem);
 
+  animation: text-appear both;
+  animation-timeline: view();
+  animation-range: entry 20% cover 100vh;
   &:hover {
     color: #ca3b13;
+  }
+}
+
+@keyframes text-appear {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 .about__us__text__inner {
@@ -293,6 +307,9 @@ header {
   line-height: 1.5;
   color: #fff;
   transition: color 0.7s ease-in-out;
+  animation: text-appear both;
+  animation-timeline: view();
+  animation-range: entry 20% cover 100vh;
   &:hover {
     color: #ad0c0c;
   }
@@ -310,6 +327,10 @@ header {
   margin-top: 1.5625rem;
   font-weight: 800;
   font-size: clamp(1.5625rem, 3.8vw, 3.4375rem);
+
+  animation: text-appear both;
+  animation-timeline: view();
+  animation-range: entry 20% cover 100vh;
 
   &:hover {
     color: #ca3b13;
@@ -380,6 +401,10 @@ header {
   font-weight: 800;
   font-size: clamp(1.5625rem, 3.8vw, 3.4375rem);
 
+  animation: text-appear both;
+  animation-timeline: view();
+  animation-range: entry 20% cover 100vh;
+
   &:hover {
     color: #ca3b13;
   }
@@ -396,6 +421,9 @@ header {
   line-height: 1.875rem;
   margin-bottom: 3.125rem;
   transition: color 0.7s ease-in-out;
+  animation: text-appear both;
+  animation-timeline: view();
+  animation-range: entry 20% cover 100vh;
   &:hover {
     color: #ad0c0c;
   }
@@ -430,6 +458,9 @@ header {
   font-weight: 900;
   line-height: 1.875rem;
   margin-bottom: 3.125rem;
+  animation: text-appear both;
+  animation-timeline: view();
+  animation-range: entry 20% cover 100vh;
   transition: color 0.7s ease-in-out;
   &:hover {
     color: #ca3b13;
@@ -715,6 +746,7 @@ header {
   line-height: 1.875rem;
   margin-bottom: 3.125rem;
   transition: color 0.7s ease-in-out;
+
   &:hover {
     color: #ca3b13;
   }
@@ -727,6 +759,7 @@ header {
   line-height: 2.3125rem;
   margin-bottom: 3.125rem;
   transition: color 0.7s ease-in-out;
+
   &:hover {
     color: #ad0c0c;
   }
