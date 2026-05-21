@@ -23,6 +23,26 @@ class AboutTextBlock(Orderable):
     panels = [FieldPanel('text')]
 
 
+
+class Coach(Orderable):
+    page = ParentalKey('HomePage', on_delete=models.CASCADE, related_name='coaches')
+    name = models.CharField(max_length=200, verbose_name='Імʼя тренера')
+    text = RichTextField(verbose_name='Опис тренера')
+    photo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name='Фото тренера'
+    )
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('text'),
+        FieldPanel('photo'),
+    ]
+
+
 class HomePage(Page):
     
     hero_title = models.CharField(max_length=200, verbose_name='Заголовок Hero', default='', blank=True)
@@ -40,6 +60,8 @@ class HomePage(Page):
         on_delete=models.SET_NULL, related_name='+',
         verbose_name='Фото "Про нас"'
     )
+
+    coaches_title = models.CharField(max_length=200, verbose_name='Заголовок тренери', default='', blank=True)
 
     
     achievements_title = models.CharField(max_length=200, verbose_name='Заголовок досягнень', default='', blank=True)
@@ -68,6 +90,11 @@ class HomePage(Page):
             InlinePanel('about_texts', label='Блок тексту'),
             FieldPanel('about_image'),
         ], heading='📖 Про нас'),
+
+        MultiFieldPanel([
+    FieldPanel('coaches_title'),
+    InlinePanel('coaches', label='Тренер'),
+], heading='🥋 Тренери'),
 
         MultiFieldPanel([
             FieldPanel('achievements_title'),

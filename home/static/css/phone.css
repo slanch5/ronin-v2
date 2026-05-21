@@ -122,6 +122,22 @@
   }
 }
 
+@media (hover: none) {
+  .coaches__title:active {
+    color: #ad0c0c;
+  }
+}
+@media (hover: none) {
+  .coaches__name:active {
+    color: #ca3b13;
+  }
+}
+@media (hover: none) {
+  .coaches__text:active {
+    color: #ad0c0c;
+  }
+}
+
 .lb-overlay {
   z-index: 2000 !important;
 }
